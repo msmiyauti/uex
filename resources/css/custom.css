@@ -1,0 +1,35 @@
+.alert-success{
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 10px;
+}
+
+.alert-error{
+  background-color: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ef9a9a;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 10px;
+}
+
+.create-button{
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #1e90ff;
+  color: #FFF;
+  border-radius: 5px;
+  margin: 20px 0;
+  display: block;
+  width: 180px;
+}
+
+#contatosmapa_wrapper{
+  width: 40%;
+  float: left;
+}
