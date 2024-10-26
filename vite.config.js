@@ -7,8 +7,15 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/maps.js',
+                'resources/css/maps.css',
             ],
             refresh: true,
         }),
     ],
+    // resolve: {
+    //     alias: {
+    //         '$': 'jQuery'
+    //     },
+    // },
 });
