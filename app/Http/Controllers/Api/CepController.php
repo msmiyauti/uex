@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Http;
 class CepController extends Controller
 {
     
+    /**
+     * Buscar endereço por cep 
+     */
     public function index(Request $request, $cep){
 
         // $cep = "01001000"; 

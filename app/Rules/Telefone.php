@@ -14,6 +14,9 @@ class Telefone implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        /**
+         * Validar o formtato (99) 99999-9999
+         */
         if(!preg_match('/^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$/', $value)){
             $fail("O campo $attribute não é válido.");
         }

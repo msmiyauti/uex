@@ -16,11 +16,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/auth', [AuthController::class, "generateToken"]);
 
-// // Route::middleware('auth:sanctum')->group(function () {
-//     Route::get('/token', [TokenController::class, "get"])->middleware(['auth', 'verified']);
-    Route::get('/cep/{cep}', [CepController::class, "index"])->middleware('auth:sanctum')->name('api.cep');
-    Route::get('/contatos', [ContatosController::class, "index"])->middleware('auth:sanctum')->name('api.contatos');
-    Route::get('/contatos/dashboard', [ContatosController::class, "dashboard"])->middleware('auth:sanctum')->name('api.contatos.dashboard');
-// });
+Route::get('/cep/{cep}', [CepController::class, "index"])->middleware('auth:sanctum')->name('api.cep');
+Route::get('/contatos', [ContatosController::class, "index"])->middleware('auth:sanctum')->name('api.contatos');
+Route::get('/contatos/dashboard', [ContatosController::class, "dashboard"])->middleware('auth:sanctum')->name('api.contatos.dashboard');

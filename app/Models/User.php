@@ -47,6 +47,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Todos contatos do User
+     */
     public function contatos()
     {
         return $this->hasMany(contatos::class);

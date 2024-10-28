@@ -21,6 +21,9 @@ class Contatos extends Model
         return ContatosFactory::new();
     }
 
+    /**
+     * Pertence ao User
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

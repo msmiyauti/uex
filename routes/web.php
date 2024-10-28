@@ -33,9 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/contatos/edit/{id}', [ContatosController::class, 'edit'])->name('contatos.edit');
 
     /** 
-     * Rota salvar um contato
+     * Rota atualizar um contato
      */
     Route::patch('/contatos', [ContatosController::class, 'update'])->name('contatos.update');
+
+    /** 
+     * Rota salvar um contato
+     */
+    Route::patch('/contatos/save', [ContatosController::class, 'save'])->name('contatos.save');
 
     /**
      * Rota para excluir um contato

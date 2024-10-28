@@ -15,19 +15,32 @@ class Cpf implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        /**
+         * Valida o formato 999.999.999-99
+         */
         if(!preg_match('/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/', $value)){
             $fail("O campo $attribute não é CPF válido.");
         }
         
+        /**
+         * Validar se é válido pelo calculo
+         */
         if(! $this->validaCPF($value)){
             $fail("O CPF não é válido.");
         }
 
+        /**
+         * Verificar se já tem cadastro
+         */
         if(Contatos::where("cpf", $value)->first()){
             $fail("O CPF já cadastrado.");
         }
     }
 
+    /**
+     * @var $cpf
+     * @return boolean
+     */
     function validaCPF($cpf) {
  
         // Extrai somente os números

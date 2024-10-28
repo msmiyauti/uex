@@ -37,7 +37,13 @@
                             </p>
                         </header>
                     
+                       
+                        @if ($contatos->id)
                         <form method="post" action="{{ route('contatos.update') }}" class="mt-6 space-y-6">
+                        @else
+                        <form method="post" action="{{ route('contatos.save') }}" class="mt-6 space-y-6">
+                        @endif
+                        
                             @csrf
                             @method('patch')
                             <input id="id" name="id" type="hidden" value="<?php echo $contatos->id?>">

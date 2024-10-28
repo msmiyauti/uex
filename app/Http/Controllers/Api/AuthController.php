@@ -12,6 +12,9 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     
+    /**
+     * Gera novo token para api
+     */
     public function generateToken(Request $request)
     {
         $request->validate([
@@ -29,12 +32,14 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * Deslogar 
+     */
     public function logout(Request $request)
     {
-		// Revoke all tokens...
+		
 		$request->user()->tokens()->delete();
-
-		// // Revoke the current token
+		
 		$request->user()->currentAccessToken()->delete();
 
 		return response()->json(['message' => 'You have been successfully logged out.'], 200);

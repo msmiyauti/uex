@@ -13,7 +13,7 @@ class ContatosController extends Controller
 
     
     /**
-     * Display a listing of the resource.
+     * Lista todos os contatos pelo usuário logado
      */
     public function index(Request $request)
     {
@@ -24,13 +24,15 @@ class ContatosController extends Controller
         return json_encode(['data'=>$contatos->toArray(), 'id' => $id]);
     }
 
+    /**
+     * listar os contatos na pagina principal
+     */
     public function dashboard(Request $request){
         $user_id = auth()->id();
         $contatos = Contatos::select(['nome', 'cidade', 'cpf', 'latitude', 'longitude'])->where('user_id',$user_id)->get();
         return json_encode(['data'=>$contatos->toArray(), 'id' => $user_id]);
     
     }
-
 
     /**
      * Store a newly created resource in storage.

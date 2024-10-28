@@ -53,12 +53,45 @@ class ContatosController extends Controller
     }
 
     /**
-     * Update do contato
+     * Save do contato
      */
-    public function update(ContatosPostRequest $request): RedirectResponse
+    public function save(ContatosPostRequest $request): RedirectResponse
     {
 
-        $request->validated();
+        $user_id = $request->user()->id;
+ 
+        $contatos = new Contatos();
+        $contatos->user_id = $user_id;
+        $contatos->nome = $request->nome;
+        $contatos->email = $request->email;
+        $contatos->cpf = $request->cpf;
+        $contatos->telefone = $request->telefone;
+        $contatos->logradouro = $request->logradouro;
+        $contatos->numero = $request->numero;
+        $contatos->complemento = $request->complemento;
+        $contatos->bairro = $request->bairro;
+        $contatos->cidade = $request->cidade;
+        $contatos->uf = $request->uf;
+        $contatos->cep = $request->cep;
+        $contatos->latitude = $request->latitude;
+        $contatos->longitude = $request->longitude;
+        
+        try{
+            $contatos->save();
+            $id = $contatos->id;
+            return Redirect::route('contatos.edit', $id)->with('success', 'Cadastro Salvo');
+        }catch(Exception $e){
+            return Redirect::route('contatos.create')->with('error', 'Houve um problema ao tentar salvar.');
+            
+        }
+    }
+
+
+    /**
+     * Update do contato
+     */
+    public function update(Request $request): RedirectResponse
+    {
 
         $id = $request->id;
         $user_id = $request->user()->id;

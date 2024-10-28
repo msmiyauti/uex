@@ -2,10 +2,11 @@
 
 namespace App\Rules;
 
+use App\Models\Contatos;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class Cep implements ValidationRule
+class Email implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -15,10 +16,10 @@ class Cep implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         /**
-         * Validar o formato 99999-99
+         * Verificar se já tem cadastro
          */
-        if(!preg_match('/^\d{5}\-\d{3}$/', $value)){
-            $fail("O campo $attribute não é válido.");
+        if(Contatos::where("email", $value)->first()){
+            $fail("O E-mail já cadastrado.");
         }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\Cep;
 use App\Rules\Cpf;
+use App\Rules\Email;
 use App\Rules\Telefone;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,7 @@ class ContatosPostRequest extends FormRequest
         return [
             'cpf' => ['required', new Cpf],
             'nome' => ['required'],
-            'email' => ['required'],
+            'email' => ['required', new Email],
             'telefone' => ['required', new Telefone],
             'cep' => ['required', new Cep],
             'logradouro' => ['required'],
