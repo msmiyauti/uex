@@ -34,5 +34,11 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'mailgun' => [
+        'domain' => "sandboxa72c378f131d48b0bfb122fccf6ada52.mailgun.org",
+        'secret' => "pubkey-47ca32e2faac176c74ca84a8a8434811",
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
+    ],
 
 ];

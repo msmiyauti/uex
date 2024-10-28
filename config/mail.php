@@ -36,6 +36,12 @@ return [
     */
 
     'mailers' => [
+        'mailgun' => [
+            'transport' => 'mailgun',
+            // 'client' => [
+            //     'timeout' => 5,
+            // ],
+        ],
 
         'smtp' => [
             'transport' => 'smtp',
@@ -53,9 +59,16 @@ return [
             'transport' => 'ses',
         ],
 
+        // 'postmark' => [
+        //     'token' => env('POSTMARK_TOKEN'),
+        //     // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
+        //     // 'client' => [
+        //     //     'timeout' => 5,
+        //     // ],
+        // ],
         'postmark' => [
             'transport' => 'postmark',
-            // 'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
+            'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID'),
             // 'client' => [
             //     'timeout' => 5,
             // ],
