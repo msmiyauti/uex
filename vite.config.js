@@ -8,7 +8,6 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/maps.js',
-                'resources/js/jquery.mask.js',
                 'resources/js/consulta.js',
                 'resources/css/maps.css',
                 'resources/css/custom.css',

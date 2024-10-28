@@ -112,9 +112,5 @@ function rowDataGet () {
         });
     });
 }
-
-
 </script>
-
-
 </x-app-layout>
