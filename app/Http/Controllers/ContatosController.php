@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContatosPostRequest;
 use App\Models\Contatos;
-use Dotenv\Validator;
 use Exception;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Redirect;
 
 class ContatosController extends Controller

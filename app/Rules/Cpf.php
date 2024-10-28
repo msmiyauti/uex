@@ -5,7 +5,6 @@ namespace App\Rules;
 use App\Models\Contatos;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Validation\Rule;
 
 class Cpf implements ValidationRule
 {
