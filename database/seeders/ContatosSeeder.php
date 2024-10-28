@@ -28,6 +28,7 @@ class ContatosSeeder extends Seeder
                 'cep' => "86050500",
                 'latitude' => "-23.326452152480098",
                 'longitude' => "-51.18034835950851",
+                'user_id' => "1",
             ]);
         Contatos::factory()->create( 
             [
@@ -44,6 +45,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
             ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -59,6 +61,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
         ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -74,6 +77,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
         ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -89,6 +93,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
         ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -104,6 +109,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
         ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -119,6 +125,7 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
         ]);
         Contatos::factory()->create([
                 'nome' => fake()->name(),
@@ -134,9 +141,8 @@ class ContatosSeeder extends Seeder
                 'cep' => fake()->postcode(),
                 'latitude' => fake()->latitude(),
                 'longitude' => fake()->longitude(),
+                'user_id' => "1",
             ]
         );
-
-        
     }
 }

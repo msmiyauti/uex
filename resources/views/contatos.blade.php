@@ -27,6 +27,7 @@
                         <th>Cidade</th>
                         <th>UF</th>
                         <th>CEP</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -37,6 +38,7 @@
                         <th>Cidade</th>
                         <th>UF</th>
                         <th>CEP</th>
+                        <th></th>
                     </tr>
                 </tfoot>
             </table>
@@ -45,7 +47,15 @@
 </div>
 <script>
 var table = new DataTable('#contatos', {
-    ajax: '{{ route("api.contatos") }}',
+    ajax: {
+        url: '{{ route("api.contatos") }}',
+        dataSrc: 'data',
+        headers: {
+            "Accept" : "application/json",
+            "Content-Type": "application/json",
+            "Authorization": "Bearer {{ $api_token }}"
+        },
+    },
     processing: true,
     // serverSide: true,
    
@@ -55,18 +65,58 @@ var table = new DataTable('#contatos', {
         { data: 'email' },
         { data: 'cidade' },
         { data: 'uf' },
-        { data: 'cep' }
+        { data: 'cep' },
+        { data: null, title: 'Excluir', "render": function (data, type, row, meta) { return '<div class="btn-group"> <button type="button" onclick="rowDataGet(); " class="btn btn-light btn-delete" >Excluir</button></div>' } }
     ]
 });
 
 let baseUrl = '{{ route("contatos.edit","") }}';
 
-$('#contatos').on( 'click', 'tr', function(  ) {
+$('#contatos').on( 'click', 'td:not(:last-child)', function(  ) {
         let data =  table.row(this).data();
         var id = data['id']; /// How can i get the UUID
         console.log(id);
         window.location.href = baseUrl + '/' + id;
     } );
+
+function rowDataGet () {
+    temp=undefined;
+    confirm("Tem certeza que quer excluir?");
+    let deleteUrl = '{{ route("contatos.destroy","") }}';
+
+    $('#contatos tbody').on( 'click', 'tr', function () {
+
+        data = $('#contatos').DataTable().row( this ).data() ;
+        var id = data['id']; 
+        $.ajax({
+            type: "DELETE",
+            contentType: "application/json",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "id": id
+            },
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer {{ $api_token }}",
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: deleteUrl + '/' + id,
+            success: (response) => {
+                alert(response.message);
+                location.reload();
+            },
+            error: function(response){
+                alert(response.message);
+            }
+        });
+        // window.location.href = deleteUrl + '/' + id;
+    });
+   
+     
+}
+
+
 </script>
 
 

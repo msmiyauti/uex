@@ -16,11 +16,32 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    /**
+     * Rota para lista de contatos
+     */
     Route::get('/contatos', [ContatosController::class, 'index'])->name('contatos');
+
+    /**
+     * Rota para formulario de criar de um contato.
+     */
     Route::get('/contatos/create', [ContatosController::class, 'create'])->name('contatos.create');
+
+    /**
+     * Rota para formulario de atualização de um contato.
+     */
     Route::get('/contatos/edit/{id}', [ContatosController::class, 'edit'])->name('contatos.edit');
+
+    /** 
+     * Rota salvar um contato
+     */
     Route::patch('/contatos', [ContatosController::class, 'update'])->name('contatos.update');
-    Route::delete('/contatos', [ContatosController::class, 'destroy'])->name('contatos.destroy');
+
+    /**
+     * Rota para excluir um contato
+     */
+    Route::delete('/contatos/{id}', [ContatosController::class, 'destroy'])->name('contatos.destroy');
+
 });
 
 require __DIR__.'/auth.php';

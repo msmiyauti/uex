@@ -1,4 +1,8 @@
+
+@use('Illuminate\Support\Facades\Vite')
 <x-app-layout>
+    
+    @vite(['resources/js/consulta.js'])
     
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -42,10 +46,11 @@
                                 <x-text-input id="nome" name="nome" type="text" class="mt-1 block w-full" :value="old('nome', $contatos->nome)" required autofocus autocomplete="nome" />
                                 <x-input-error class="mt-2" :messages="$errors->get('nome')" />
                             </div>
-                            <div>
+                            <div x-data={}>
                                 <x-input-label for="cpf" :value="__('CPF')" />
-                                <x-text-input id="cpf" name="cpf" type="text" class="mt-1 block w-full" :value="old('cpf', $contatos->cpf)" required autofocus autocomplete="cpf" />
+                                <x-text-input id="cpf" name="cpf" x-mask="999.999.999-99" type="text" placeholder="999.999.999-99" class="mt-1 block w-full maska" :value="old('cpf', $contatos->cpf)" required autofocus autocomplete="cpf" />
                                 <x-input-error class="mt-2" :messages="$errors->get('cpf')" />
+                                
                             </div>
                             <div>
                                 <x-input-label for="email" :value="__('Email')" />
@@ -71,18 +76,74 @@
                                 @endif
                             </div>
                     
-                            <div>
+                            <div x-data={}>
                                 <x-input-label for="telefone" :value="__('Telefone')" />
-                                <x-text-input id="telefone" name="telefone" type="text" class="mt-1 block w-full" :value="old('telefone', $contatos->telefone)" required autofocus autocomplete="telefone" />
+                                <x-text-input id="telefone" name="telefone" x-mask="(99) 99999-9999"  type="text" placeholder="(99) 99999-9999" class="mt-1 block w-full" :value="old('telefone', $contatos->telefone)" required autofocus autocomplete="telefone" />
                                 <x-input-error class="mt-2" :messages="$errors->get('telefone')" />
                             </div>
                             <div>
+                                <div class="place-autocomplete-card" id="place-autocomplete-card">
+                                    <p>Procure seu endereço:</p>
+                                  </div>
+                                  <div id="map"></div>
+                                 <!-- prettier-ignore -->
+<script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+({key: "AIzaSyBoxJ1kpvtgK_W1oGR4dZk4Umrg5DM-ioA", v: "beta"});</script>
+<style>
+/**
+* @license
+* Copyright 2019 Google LLC. All Rights Reserved.
+* SPDX-License-Identifier: Apache-2.0
+*/
+/* 
+* Always set the map height explicitly to define the size of the div element
+* that contains the map. 
+*/
+#map {
+height: 200px;
+}
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+ html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#place-autocomplete-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+  padding: 5px;
+  font-family: Roboto, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  width: 88%;
+}
+
+gmp-place-autocomplete {
+  width: 100%;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+</style>
+                            </div>
+                            <div x-data={}>
                                 <x-input-label for="cep" :value="__('CEP')" />
-                                <x-text-input id="cep" name="cep" type="text" class="mt-1 block w-full" :value="old('cep', $contatos->cep)" required autofocus autocomplete="cep" />
+                                <x-text-input id="cep" name="cep" x-mask="99999-999"  placeholder="99999-999" type="text" class="mt-1 block w-full" :value="old('cep', $contatos->cep)" required autofocus autocomplete="cep" />
                                 <x-input-error class="mt-2" :messages="$errors->get('cep')" />
                             </div>
 
-                            <div>
+                            <div class="logradouro">
                                 <x-input-label for="logradouro" :value="__('Logradouro')" />
                                 <x-text-input id="logradouro" name="logradouro" type="text" class="mt-1 block w-full" :value="old('logradouro', $contatos->logradouro)" required autofocus autocomplete="logradouro" />
                                 <x-input-error class="mt-2" :messages="$errors->get('logradouro')" />

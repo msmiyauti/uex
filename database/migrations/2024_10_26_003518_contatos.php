@@ -19,13 +19,14 @@ return new class extends Migration
             $table->string('telefone');
             $table->string('logradouro');
             $table->string('numero');
-            $table->string('complemento');
+            $table->string('complemento')->nullable();
             $table->string('bairro');
             $table->string('cidade');
             $table->string('uf');
             $table->string('cep');
             $table->string('latitude');
             $table->string('longitude');
+            $table->foreignId('user_id')->nullable()->index();
             $table->timestamps();
         });
 

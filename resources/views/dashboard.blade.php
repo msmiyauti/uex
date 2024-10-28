@@ -15,6 +15,7 @@
             </div>
         </div>
     </div>
+    @vite(['resources/js/maps.js'])
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
@@ -28,16 +29,23 @@
           // Add other bootstrap parameters as needed, using camel case.
         });
       
-
       $(document).ready( function () {
 
         let table = $('#contatosmapa').DataTable( {
-            data: <?php echo ($contatos);?>,
+            ajax: {
+                url: '{{ route("api.contatos.dashboard") }}',
+                dataSrc: 'data',
+                headers: {
+                    "Accept" : "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer {{ $api_token }}"
+                },
+            },
             select:true,
-           
             columns: [ 
                 {data: 'nome'},
                 {data: 'cidade'},
+                {data: 'cpf', "visible": false},
                 {data: 'latitude', "visible": false},
                 {data: 'longitude', "visible": false},
             ]

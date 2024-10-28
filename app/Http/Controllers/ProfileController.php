@@ -48,6 +48,12 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        $contatos = $user->contatos()->get();
+        
+        foreach($contatos as $contato){
+            $contato->delete();
+        }
+
         Auth::logout();
 
         $user->delete();

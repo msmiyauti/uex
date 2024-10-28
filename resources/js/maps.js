@@ -7,12 +7,12 @@ async function initMap() {
     const myLatlng = { lat: -23.326452152480098, lng: -51.18034835950851 };
     // Short namespaces can be used.
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
+        zoom: 12,
         center: myLatlng,
         mapId: "DEMO_MAP_ID",
       });
 
-    let table = $('#contatos').DataTable();
+    let table = $('#contatosmapa').DataTable();
 
     table.on('click', 'tbody tr', function () {
 

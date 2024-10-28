@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContatosPostRequest;
 use App\Models\Contatos;
+use Dotenv\Validator;
 use Exception;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Redirect;
 
 class ContatosController extends Controller
@@ -14,11 +18,10 @@ class ContatosController extends Controller
     /**
      * Form de edição de contato
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('contatos', [
-            
-        ]);
+        $api_token = $request->session()->get("api_token");
+        return view('contatos', ['api_token'=> $api_token]);
     }
 
     /**
@@ -52,20 +55,19 @@ class ContatosController extends Controller
     /**
      * Update do contato
      */
-    public function update(Request $request): RedirectResponse
+    public function update(ContatosPostRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'nome' => ['required'],
-            'cpf' => ['required'],
-        ]);
+
+        $request->validated();
 
         $id = $request->id;
-
+        $user_id = $request->user()->id;
         if($id){
             $contatos = Contatos::find($id);
         }else{
             $contatos = new Contatos();
             $id = "";
+            $contatos->user_id = $user_id;
         }
  
         $contatos->nome = $request->nome;
@@ -87,24 +89,29 @@ class ContatosController extends Controller
             $id = $contatos->id;
             return Redirect::route('contatos.edit', $id)->with('success', 'Cadastro Salvo');
         }catch(Exception $e){
-            return Redirect::route('contatos.edit', $id)->with('error', 'Houve um problema ao tentar salvar.');
-
+            if($id){
+                return Redirect::route('contatos.edit', $id)->with('error', 'Houve um problema ao tentar salvar.');
+            }else{
+                return Redirect::route('contatos.create')->with('error', 'Houve um problema ao tentar salvar.');
+            }
         }
-    
-        
     }
 
     /**
      * Delete contato
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-
-        $user = $request->user();
-
-        $user->delete();
-
-        return Redirect::to('/');
+        $id = $request->route("id");
+        try{
+            if($id){
+                $contatos = Contatos::find($id);
+                $contatos->delete();
+            }
+            return response()->json(['success' => true, 'message'=> "Cadastro Excluido."]);
+        }catch(Exception $e){
+            return response()->json(['error' => true, 'message'=> "Não Foi Possível Excluir."]);
+        }
     }
 
 }

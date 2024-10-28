@@ -2,12 +2,9 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import mask from '@alpinejs/mask';
 
-window.Alpine = Alpine;
+Alpine.plugin(mask);
 
 Alpine.start();
 
-import DataTable from 'datatables.net-dt';
-
-// import jQuery from 'jquery';
-// window.$ = jQuery;
