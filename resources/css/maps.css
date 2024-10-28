@@ -11,14 +11,31 @@
     height: 500px;
   }
   
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
+.edit-contato #map {
+  height: 200px;
+}
+
+#place-autocomplete-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+  padding: 5px;
+  font-family: Roboto, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  width: 88%;
+}
+
+gmp-place-autocomplete {
+  width: 100%;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
   

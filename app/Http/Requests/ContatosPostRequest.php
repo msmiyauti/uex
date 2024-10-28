@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Contatos;
 use App\Rules\Cep;
 use App\Rules\Cpf;
-use App\Rules\Email;
 use App\Rules\Telefone;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ContatosPostRequest extends FormRequest
 {
@@ -26,9 +27,9 @@ class ContatosPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cpf' => ['required', new Cpf],
+            'cpf' => ['required', new Cpf($this->id)],
             'nome' => ['required'],
-            'email' => ['required', new Email],
+            'email' => ['required','string','lowercase','email','max:255', Rule::unique(Contatos::class)->ignore($this->id)],
             'telefone' => ['required', new Telefone],
             'cep' => ['required', new Cep],
             'logradouro' => ['required'],

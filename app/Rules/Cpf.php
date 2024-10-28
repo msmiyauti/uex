@@ -5,9 +5,22 @@ namespace App\Rules;
 use App\Models\Contatos;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\Rule;
 
 class Cpf implements ValidationRule
 {
+    
+    protected mixed $id;
+
+    /**
+     * @param mixed $id
+     * 
+     */
+    public function __construct(mixed $id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * Run the validation rule.
      *
@@ -28,11 +41,11 @@ class Cpf implements ValidationRule
         if(! $this->validaCPF($value)){
             $fail("O CPF não é válido.");
         }
-
+        
         /**
          * Verificar se já tem cadastro
          */
-        if(Contatos::where("cpf", $value)->first()){
+        if(Contatos::where("cpf", $value)->whereNot('id', $this->id)->first()){
             $fail("O CPF já cadastrado.");
         }
     }
@@ -67,6 +80,5 @@ class Cpf implements ValidationRule
             }
         }
         return true;
-    
     }
 }

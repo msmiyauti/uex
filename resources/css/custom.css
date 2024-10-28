@@ -1,4 +1,4 @@
-.alert-success{
+.alert-success {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
@@ -8,7 +8,7 @@
   padding: 10px;
 }
 
-.alert-error{
+.alert-error {
   background-color: #ffebee;
   color: #b71c1c;
   border: 1px solid #ef9a9a;
@@ -18,7 +18,7 @@
   padding: 10px;
 }
 
-.create-button{
+.create-button {
   border: 1px solid #ddd;
   padding: 15px;
   background-color: #1e90ff;
@@ -29,7 +29,7 @@
   width: 180px;
 }
 
-#contatosmapa_wrapper{
+#contatosmapa_wrapper {
   width: 40%;
   float: left;
 }

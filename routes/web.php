@@ -37,11 +37,6 @@ Route::middleware('auth')->group(function () {
      */
     Route::patch('/contatos', [ContatosController::class, 'update'])->name('contatos.update');
 
-    /** 
-     * Rota salvar um contato
-     */
-    Route::patch('/contatos/save', [ContatosController::class, 'save'])->name('contatos.save');
-
     /**
      * Rota para excluir um contato
      */

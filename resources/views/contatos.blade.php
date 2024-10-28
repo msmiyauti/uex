@@ -1,21 +1,23 @@
 <x-app-layout>
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-error">
-        {{ session('error') }}
-    </div>
-@endif
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
   
 <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
 <div class="py-6">
     <div class="mx-auto sm:px-6 lg:px-8">
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg table-responsive">
             <a href="{{ route('contatos.create') }}" class="button create-button p-4 btn btn-large btn-primary openbutton">Add Novo Cadastro</a> 
             <table id="contatos" class="display" style="width:100%">
@@ -56,9 +58,7 @@ var table = new DataTable('#contatos', {
             "Authorization": "Bearer {{ $api_token }}"
         },
     },
-    processing: true,
-    // serverSide: true,
-   
+    processing: true,   
     columns: [
         { data: 'nome' },
         { data: 'cpf' },
@@ -110,10 +110,7 @@ function rowDataGet () {
                 alert(response.message);
             }
         });
-        // window.location.href = deleteUrl + '/' + id;
     });
-   
-     
 }
 
 
