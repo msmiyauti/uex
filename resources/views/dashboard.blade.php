@@ -44,7 +44,7 @@
             select:true,
             columns: [ 
                 {data: 'nome'},
-                {data: 'cidade'},
+                {data: 'cidade', "seaching": false},
                 {data: 'cpf', "visible": false},
                 {data: 'latitude', "visible": false},
                 {data: 'longitude', "visible": false},
